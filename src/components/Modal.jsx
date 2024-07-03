@@ -1,5 +1,8 @@
+import { forwardRef } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function Modal({ children }) {
+const Modal = forwardRef(function Modal({ children }, ref) {
   return createPortal(<dialog>{children}</dialog>, document.querySelector('#modal-root'));
-}
+});
+
+export default Modal;
