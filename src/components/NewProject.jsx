@@ -15,6 +15,11 @@ export default function NewProject({ onAdd }) {
     const enteredDueDate = dueDate.current.value;
 
     // validation
+    if (enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredDueDate.trim() === '') {
+      console.log('nothing entered. Validation failed.');
+      // SHOW ERROR MODAL
+      return;
+    }
 
     onAdd({
       title: enteredTitle,
