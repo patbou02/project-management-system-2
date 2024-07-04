@@ -9,7 +9,8 @@ function App() {
 
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
+    tasks: []
   });
 
   const handleStartAddProject = () => {
