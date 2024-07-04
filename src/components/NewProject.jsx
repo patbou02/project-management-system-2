@@ -32,7 +32,11 @@ export default function NewProject({ onAdd }) {
 
   return (
     <>
-      <Modal ref={modal} />
+      <Modal ref={modal} buttonCaption="Close">
+        <h2>Invalid Input</h2>
+        <p>Looks like you forgot to enter a value.</p>
+        <p>Please make sure you provide a valid value for every input field.</p>
+      </Modal>
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
