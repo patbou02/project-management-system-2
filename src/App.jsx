@@ -58,11 +58,26 @@ function App() {
     });
   };
 
-  console.log('state', projectsState);
+  const handleAddTask = text => {
+    setProjectsState(prevState => {
+      const taskId = Math.floor(Math.random() * 99999);
+      const newTask = {
+        id: taskId,
+        projectId: prevState.selectedProjectId,
+        text: text
+      };
+      return {
+        ...prevState,
+        tasks: [ newTask, ...prevState.tasks ]
+      };
+    });
+  };
+
+  const handleDeleteTask = () => { console.log('App() handleDeleteTask =>', task) };
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject} />;
+  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject} onAddTask={handleAddTask} onDeleteTask={handleDeleteTask} />;
 
   if (projectsState.selectedProjectId === undefined) {
     // UNDEFINED => We are 'doing nothing'.
