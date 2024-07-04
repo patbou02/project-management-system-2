@@ -45,11 +45,23 @@ function App() {
     });
   };
 
+  const handleDeleteProject = () => {
+    console.log('inside handleDeleteProject()', projectsState.projects);
+
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(project => project.id !== prevState.selectedProjectId)
+      }
+    });
+  };
+
   console.log('state', projectsState);
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
-  let content = <SelectedProject project={selectedProject} />;
+  let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject} />;
 
   if (projectsState.selectedProjectId === undefined) {
     // UNDEFINED => We are 'doing nothing'.
