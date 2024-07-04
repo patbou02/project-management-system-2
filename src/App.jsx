@@ -39,7 +39,7 @@ function App() {
     });
   };
 
-  const handleSelectedProject = (id) => {
+  const handleSelectProject = id => {
     setProjectsState(prevState => {
       return { ...prevState, selectedProjectId: id };
     });
@@ -47,7 +47,9 @@ function App() {
 
   console.log('state', projectsState);
 
-  let content;
+  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
+
+  let content = <SelectedProject project={selectedProject} />;
 
   if (projectsState.selectedProjectId === undefined) {
     // UNDEFINED => We are 'doing nothing'.
@@ -55,15 +57,14 @@ function App() {
   } else if (projectsState.selectedProjectId === null) {
     // NULL => We are 'adding a new project'.
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />;
-  } else {
-    content = <SelectedProject project={projectsState.selectedProjectId} />
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectSidebar
         onStartAddProject={handleStartAddProject}
-        onSelectedProject={handleSelectedProject}
+        onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
         projects={projectsState.projects}
       />
       {content}
