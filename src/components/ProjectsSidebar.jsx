@@ -16,7 +16,9 @@ function ProjectSidebar({ onStartAddProject, projects, onSelectProject, selected
               <button
                 className={cssClasses}
                 onClick={() => onSelectProject(project.id)}
-              >{project.title}</button>
+              >
+                {project.title} (id: {project.id})
+              </button>
             </li>
           )
         })}

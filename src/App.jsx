@@ -20,7 +20,7 @@ function App() {
 
   const handleAddProject = projectData => {
     setProjectsState(prevState => {
-      const projectId = Math.random();
+      const projectId = Math.floor(Math.random() * 99);
       const newProject = { ...projectData, id: projectId };
       return {
         ...prevState,
