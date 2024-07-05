@@ -73,7 +73,14 @@ function App() {
     });
   };
 
-  const handleDeleteTask = () => { console.log('App() handleDeleteTask =>', task) };
+  const handleDeleteTask = id => {
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter(task => task.id !== id)
+      };
+    });
+  };
 
   const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId);
 
